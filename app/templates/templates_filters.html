@@ -28,6 +28,39 @@
         <a class="btn">Button</a>
       </div>
     </div>
-    <h1 class="text-center">This is Template Filter page</h1>
+    <h1 class="text-center text-4xl text-blue-500 mt-5">
+      Template Filter page
+    </h1>
+
+    <div class="m-10 p-10 border-4 border-blue-200 rounded-lg w-96 mx-auto">
+      <h2 class="text-2xl text-green-500 mb-5">User Information:</h2>
+      <p><strong>Name:</strong> {{ name|upper }}</p>
+      <p><strong>Age:</strong> {{ age }}</p>
+      <p><strong>City:</strong> {{ city|lower }}</p>
+      <p><strong>Skills:</strong> {{ lst|join:", " }}</p>
+    </div>
+
+    <div class="">
+      <h2 class="text-3xl font-semibold text-green-500 mb-5 text-center">
+        Courses:
+      </h2>
+      <div class="flex gap-5 justify-center flex-wrap">
+        {% for course in courses %}
+        <a href="/course/{{ course.id }}/{{course.name|slugify}}/">
+          <div class="border-2 border-gray-300 rounded-lg p-5 mb-5 w-80">
+            <img
+              src="{{ course.img }}"
+              alt="{{ course.name }}"
+              class="w-full h-40 object-cover mb-3 rounded-md"
+            />
+            <h3 class="text-xl font-bold">{{ course.name|title }}</h3>
+            <p class="text-gray-600">
+              Price: ${{ course.price|floatformat:2 }}
+            </p>
+          </div></a
+        >
+        {% endfor %}
+      </div>
+    </div>
   </body>
 </html>
