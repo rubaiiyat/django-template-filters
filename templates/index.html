@@ -1,36 +1,5 @@
-{% load static%}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <div class="navbar bg-base-100 shadow-sm">
-      <div class="navbar-start">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-          <li><a href="/">HOME</a></li>
-          <li><a href="/templates/">TEMPLATES</a></li>
-          <li><a href="/about/">ABOUT</a></li>
-          <li><a href="/contact/">CONTACT</a></li>
-        </ul>
-      </div>
-      <div class="navbar-end">
-        <a class="btn">Button</a>
-      </div>
-    </div>
-    <h1 class="text-center">This is home page</h1>
+{% extends 'base.html' %} {% load static%} {% block content %}
+<h1 class="text-center">This is home page</h1>
 
-    <img src="{%static 'images/django_1.jpg'%}" alt="Django banner image" />
-  </body>
-</html>
+<img src="{%static 'images/django_1.jpg'%}" alt="Django banner image" />
+{% endblock content %}

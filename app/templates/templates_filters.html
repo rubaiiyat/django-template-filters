@@ -1,76 +1,43 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template Fitlers</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <div class="navbar bg-base-100 shadow-sm">
-      <div class="navbar-start">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-          <li><a href="/">HOME</a></li>
-          <li><a href="/templates/">TEMPLATES</a></li>
-          <li><a href="/about/">ABOUT</a></li>
-          <li><a href="/contact/">CONTACT</a></li>
-        </ul>
-      </div>
-      <div class="navbar-end">
-        <a class="btn">Button</a>
-      </div>
-    </div>
-    <h1 class="text-center text-4xl text-blue-500 mt-5">
-      Template Filter page
-    </h1>
+{% extends 'base.html' %} {%load static%} {% block content %}
 
-    <div class="m-10 p-10 border-4 border-blue-200 rounded-lg w-96 mx-auto">
-      <h2 class="text-2xl text-green-500 mb-5">User Information:</h2>
-      <p><strong>Name:</strong> {{ name|upper }}</p>
-      <p><strong>Age:</strong> {{ age }}</p>
-      <p><strong>City:</strong> {{ city|lower }}</p>
-      <p><strong>Skills:</strong> {{ lst|join:", " }}</p>
-    </div>
+<h1 class="text-center text-4xl text-blue-500 mt-5">Template Filter page</h1>
 
-    <div class="">
-      <h2 class="text-3xl font-semibold text-green-500 mb-5 text-center">
-        Courses:
-      </h2>
-      <div class="flex gap-5 justify-center flex-wrap">
-        {% for course in courses %}
-        <a href="/course/{{ course.id }}/{{course.name|slugify}}/">
-          <div class="border-2 border-gray-300 rounded-lg p-5 mb-5 w-80">
-            <img
-              src="{{ course.img }}"
-              alt="{{ course.name }}"
-              class="w-full h-40 object-cover mb-3 rounded-md"
-            />
-            <h3 class="text-xl font-bold">{{ course.name|title }}</h3>
-            <p>{{course.des|truncatewords:5}}</p>
-            <p class="text-gray-600">
-              Price: ${{ course.price|floatformat:2 }}
-            </p>
+<div class="m-10 p-10 border-4 border-blue-200 rounded-lg w-96 mx-auto">
+  <h2 class="text-2xl text-green-500 mb-5">User Information:</h2>
+  <p><strong>Name:</strong> {{ name|upper }}</p>
+  <p><strong>Age:</strong> {{ age }}</p>
+  <p><strong>City:</strong> {{ city|lower }}</p>
+  <p><strong>Skills:</strong> {{ lst|join:", " }}</p>
+</div>
 
-            <p class="text-xs">Posted: {{course.posted}}</p>
-          </div></a
-        >
-        {% endfor %}
-      </div>
+<div class="">
+  <h2 class="text-3xl font-semibold text-green-500 mb-5 text-center">
+    Courses:
+  </h2>
+  <div class="flex gap-5 justify-center flex-wrap">
+    {% for course in courses %}
+    <a href="/course/{{ course.id }}/{{course.name|slugify}}/">
+      <div class="border-2 border-gray-300 rounded-lg p-5 mb-5 w-80">
+        <img
+          src="{{ course.img }}"
+          alt="{{ course.name }}"
+          class="w-full h-40 object-cover mb-3 rounded-md"
+        />
+        <h3 class="text-xl font-bold">{{ course.name|title }}</h3>
+        <p>{{course.des|truncatewords:5}}</p>
+        <p class="text-gray-600">Price: ${{ course.price|floatformat:2 }}</p>
 
-      <img
-        class="w-full"
-        src="{%static 'images/django_1.jpg'%}"
-        alt="Banner image"
-      />
-    </div>
-  </body>
-</html>
+        <p class="text-xs">Posted: {{course.posted}}</p>
+      </div></a
+    >
+    {% endfor %}
+  </div>
+
+  <img
+    class="w-full"
+    src="{%static 'images/django_1.jpg'%}"
+    alt="Banner image"
+  />
+</div>
+
+{% endblock content %}
